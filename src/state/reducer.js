@@ -1,6 +1,6 @@
 export { cart, products }
 
-function cart(state, action) {
+function cart(state = [], action = {}) {
   switch (action.type) {
     case "ADD_ITEM":
       return [...state, { ...action.payload }]
