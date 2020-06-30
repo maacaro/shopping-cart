@@ -1,17 +1,9 @@
 import { createStore as reduxCreateStore, combineReducers } from "redux"
-
-const cart = (state, action) => {
-  if (action.type === `INCREMENT`) {
-    return Object.assign({}, state, {
-      itemCount: state.itemCount + 1,
-    })
-  }
-  return { itemCount: 0 }
-}
+import { cart, products } from "./reducer"
 
 const createStore = () =>
   reduxCreateStore(
-    combineReducers({ cart }),
+    combineReducers({ cart, products }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 export default createStore
