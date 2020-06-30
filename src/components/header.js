@@ -18,7 +18,12 @@ const Header = ({ siteTitle }) => (
           </li>
           <li>
             <Link to="/cart">
-              <i class="large material-icons">shopping_cart</i>
+              <i
+                style={{ height: "64px", lineHeight: "64px" }}
+                className="material-icons"
+              >
+                shopping_cart
+              </i>
             </Link>
           </li>
         </ul>
