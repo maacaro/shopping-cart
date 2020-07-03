@@ -67,6 +67,11 @@ main .container ul {
   outline: none;
   border: 0;
 }
+.card .qty-box input[type="number"]::-webkit-outer-spin-button,
+.card .qty-box input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 @media only screen and (min-device-width: 601px) and (max-device-width: 991px) {
   main .container li {
     float: left;
