@@ -2,19 +2,26 @@ import { cart as cartReducer, products as productsReducer } from "./reducer"
 
 describe("cart Reducer", () => {
   it("return the initial state", () => {
-    const initialState = []
+    const initialState = { items: [], total: 0, quantity: 0 }
 
     const state = cartReducer(null, {})
 
     expect(state).toEqual(initialState)
   })
   it("add an item into the state", () => {
-    const expectedState = [{ id: 0, desc: "foo" }]
+    const expectedState = {
+      items: [{ id: 0, desc: "foo", quantity: 2, price: 3 }],
+      total: 6,
+      quantity: 2,
+    }
 
-    const state = cartReducer([], {
-      type: "ADD_ITEM",
-      payload: { id: 0, desc: "foo" },
-    })
+    const state = cartReducer(
+      {},
+      {
+        type: "ADD_ITEM",
+        payload: { id: 0, desc: "foo", quantity: 2, price: 3 },
+      }
+    )
 
     expect(state).toEqual(expectedState)
   })

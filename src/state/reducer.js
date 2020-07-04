@@ -3,9 +3,16 @@ export { cart, products }
 function cart(state = [], action = {}) {
   switch (action.type) {
     case "ADD_ITEM":
-      return [...state, { ...action.payload }]
+      const { items = [], total = 0, quantity = 0 } = state
+      const { payload } = action
+      const { price, quantity: itemQuantity } = payload
+      return {
+        items: [...items, { ...payload }],
+        total: total + price * itemQuantity,
+        quantity: quantity + itemQuantity,
+      }
     default:
-      return []
+      return { items: [], total: 0, quantity: 0 }
   }
 }
 function products(state, action) {
