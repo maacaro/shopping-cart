@@ -61,11 +61,32 @@ const items = [
   },
 ]
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <ItemList items={items} />
-  </Layout>
-)
+function IndexPage() {
+  const cart = useSelector(state => state.cart)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const fetchItems = () => {
+      dispatch({
+        type: "LOAD_PRODUCTS",
+        payload: items,
+      })
+    }
+  })
+
+  const handleOnAddToCart = item => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: item,
+    })
+  }
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <ItemList items={items} onAddToCart={handleOnAddToCart} />
+    </Layout>
+  )
+}
 
 export default IndexPage

@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-
+import { useSelector } from "react-redux"
 import Header from "./header"
 
 const Layout = ({ children }) => {
@@ -21,10 +21,10 @@ const Layout = ({ children }) => {
       }
     }
   `)
-
+  const itemsQty = useSelector(state => state.cart.quantity)
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header siteTitle={data.site.siteMetadata.title} itemsQty={itemsQty} />
       <div
         style={{
           margin: `0 auto`,

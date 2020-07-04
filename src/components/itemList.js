@@ -2,20 +2,20 @@ import React, { useState } from "react"
 
 export default ItemList
 
-function ItemList({ items }) {
+function ItemList({ items, onAddToCart }) {
   return (
     <div className="container">
       <h3 className="center">Our items</h3>
       <ul>
         {items.map(item => (
-          <Item {...item} />
+          <Item {...item} onAddToCart={onAddToCart} />
         ))}
       </ul>
     </div>
   )
 }
 
-function Item({ id, img, title, price, desc }) {
+function Item({ id, img, title, price, desc, onAddToCart }) {
   const [quantity, setQuantity] = useState(0)
   const handleQtyPlus = () => {
     setQuantity(quantity + 1)
@@ -23,6 +23,13 @@ function Item({ id, img, title, price, desc }) {
   const handleQtyMinus = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1)
+    }
+  }
+  const handleOnAddToCart = item => () => {
+    const { quantity } = item
+    if (quantity > 0) {
+      onAddToCart(item)
+      setQuantity(0)
     }
   }
   return (
@@ -82,7 +89,19 @@ function Item({ id, img, title, price, desc }) {
           >
             <icon className="tiny material-icons">add</icon>
           </button>
-          <button className="cta-add">Agregar</button>
+          <button
+            className="cta-add"
+            onClick={handleOnAddToCart({
+              id,
+              img,
+              title,
+              price,
+              desc,
+              quantity,
+            })}
+          >
+            Agregar
+          </button>
         </div>
         <div className="card-content">
           <p>{desc}</p>
