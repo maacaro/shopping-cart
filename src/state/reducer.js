@@ -1,6 +1,6 @@
 export { cart, products }
 
-function cart(state = [], action = {}) {
+function cart(state = { items: [], total: 0, quantity: 0 }, action = {}) {
   switch (action.type) {
     case "ADD_ITEM":
       const { items = [], total = 0, quantity = 0 } = state
@@ -12,14 +12,14 @@ function cart(state = [], action = {}) {
         quantity: quantity + itemQuantity,
       }
     default:
-      return { items: [], total: 0, quantity: 0 }
+      return state
   }
 }
-function products(state, action) {
+function products(state = [], action) {
   switch (action.type) {
     case "LOAD_PRODUCTS":
       return [...action.payload]
     default:
-      return []
+      return state
   }
 }

@@ -8,7 +8,7 @@ function ItemList({ items, onAddToCart }) {
       <h3 className="center">Our items</h3>
       <ul>
         {items.map(item => (
-          <Item {...item} onAddToCart={onAddToCart} />
+          <Item key={item.id} {...item} onAddToCart={onAddToCart} />
         ))}
       </ul>
     </div>
@@ -24,6 +24,9 @@ function Item({ id, img, title, price, desc, onAddToCart }) {
     if (quantity > 0) {
       setQuantity(quantity - 1)
     }
+  }
+  const handleOnChangeQty = ({ target: { value } }) => {
+    setQuantity(Number(value))
   }
   const handleOnAddToCart = item => () => {
     const { quantity } = item
@@ -60,7 +63,7 @@ function Item({ id, img, title, price, desc, onAddToCart }) {
               justifyContent: "center",
             }}
           >
-            <icon className="material-icons">remove</icon>
+            <i className="material-icons">remove</i>
           </button>
           <div
             className="valign-wrapper"
@@ -73,7 +76,12 @@ function Item({ id, img, title, price, desc, onAddToCart }) {
               borderColor: "#dfdfdf",
             }}
           >
-            <input className="qty-input" type="number" value={quantity} />
+            <input
+              className="qty-input"
+              type="number"
+              value={quantity}
+              onChange={handleOnChangeQty}
+            />
           </div>
           <button
             className="valign-wrapper"
@@ -87,7 +95,7 @@ function Item({ id, img, title, price, desc, onAddToCart }) {
               cursor: "pointer",
             }}
           >
-            <icon className="tiny material-icons">add</icon>
+            <i className="tiny material-icons">add</i>
           </button>
           <button
             className="cta-add"

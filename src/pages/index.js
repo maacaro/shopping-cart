@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ItemList from "../components/itemList"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Item1 from "../images/item1.jpg"
 import Item2 from "../images/item2.jpg"
 import Item3 from "../images/item3.jpg"
@@ -62,17 +62,18 @@ const items = [
 ]
 
 function IndexPage() {
-  const cart = useSelector(state => state.cart)
   const dispatch = useDispatch()
+  const products = useSelector(state => state.products)
 
   useEffect(() => {
-    const fetchItems = () => {
+    const fetchProducts = () => {
       dispatch({
         type: "LOAD_PRODUCTS",
         payload: items,
       })
     }
-  })
+    fetchProducts()
+  }, [])
 
   const handleOnAddToCart = item => {
     dispatch({
@@ -84,7 +85,7 @@ function IndexPage() {
   return (
     <Layout>
       <SEO title="Home" />
-      <ItemList items={items} onAddToCart={handleOnAddToCart} />
+      <ItemList items={products} onAddToCart={handleOnAddToCart} />
     </Layout>
   )
 }
