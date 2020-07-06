@@ -73,7 +73,7 @@ function IndexPage() {
       })
     }
     fetchProducts()
-  }, [])
+  }, [dispatch])
 
   const handleOnAddToCart = item => {
     dispatch({
