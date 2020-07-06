@@ -1,0 +1,117 @@
+main .container ul {
+  overflow: hidden;
+  margin: 0 -10px;
+  padding: 0;
+  list-style: none;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+.card {
+  width: 100%;
+  margin: 7.5px auto 15px;
+}
+.card .card-image .card-title {
+  color: black;
+  font-weight: 400;
+}
+.cart {
+  margin-top: 40px;
+}
+.collection .collection-item {
+  width: 100%;
+}
+.collection-item .title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #ee6e73;
+  display: block;
+  margin-bottom: 20px;
+}
+.collection .collection-item img {
+  width: 150px;
+  margin-right: 25px;
+}
+.item-desc {
+  align-self: center;
+}
+.cta-add {
+  width: 35%;
+  border-style: solid;
+  border-width: 1px;
+  border-left: none;
+  background-color: #ee6e73;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.cta-add:hover {
+  opacity: 0.9;
+}
+.card .qty-box input[type="number"] {
+  margin: 0;
+  height: 100%;
+  border: 0;
+  text-align: center;
+  vertical-align: baseline;
+  font-size: 14px;
+  -moz-appearance: textfield;
+}
+.card .qty-box input[type="number"]:focus {
+  outline: none;
+  border: 0;
+  box-shadow: 0 0 0 0 #000;
+}
+.card .qty-box input[type="number"]:active {
+  outline: none;
+  border: 0;
+}
+.card .qty-box input[type="number"]::-webkit-outer-spin-button,
+.card .qty-box input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.remove {
+  width: 100%;
+}
+.item-img {
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (min-device-width: 601px) and (max-device-width: 991px) {
+  main .container li {
+    float: left;
+    width: 49%;
+  }
+  main .container li:nth-child(odd) {
+    margin-right: 2%;
+  }
+}
+@media only screen and (min-device-width: 992px) and (max-device-width: 1024px) {
+  main .container li {
+    float: left;
+    width: 32%;
+  }
+  main .container li:nth-child(3n + 1) {
+    margin-right: 2%;
+  }
+  main .container li:nth-child(3n) {
+    margin-left: 2%;
+  }
+}
+@media only screen and (min-device-width: 1025px) {
+  main .container li {
+    float: left;
+    width: 23.5%;
+  }
+  main .container li:nth-child(4n + 1) {
+    margin-right: 2%;
+  }
+  main .container li:nth-child(4n) {
+    margin-left: 2%;
+  }
+  main .container li:nth-child(4n + 1) + li {
+    margin-right: 2%;
+  }
+}

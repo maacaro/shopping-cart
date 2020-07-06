@@ -1,22 +1,93 @@
-import React from "react"
-import { Link } from "gatsby"
-
+import React, { useEffect } from "react"
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import ItemList from "../components/itemList"
+import { useDispatch, useSelector } from "react-redux"
+import Item1 from "../images/item1.jpg"
+import Item2 from "../images/item2.jpg"
+import Item3 from "../images/item3.jpg"
+import Item4 from "../images/item4.jpg"
+import Item5 from "../images/item5.jpg"
+import Item6 from "../images/item6.jpg"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+const items = [
+  {
+    id: 1,
+    title: "Winter body",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",
+    price: 110,
+    img: Item1,
+  },
+  {
+    id: 2,
+    title: "Adidas",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",
+    price: 80,
+    img: Item2,
+  },
+  {
+    id: 3,
+    title: "Vans",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",
+    price: 120,
+    img: Item3,
+  },
+  {
+    id: 4,
+    title: "White",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",
+    price: 260,
+    img: Item4,
+  },
+  {
+    id: 5,
+    title: "Cropped-sho",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",
+    price: 160,
+    img: Item5,
+  },
+  {
+    id: 6,
+    title: "Blues",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",
+    price: 90,
+    img: Item6,
+  },
+]
+
+function IndexPage() {
+  const dispatch = useDispatch()
+  const products = useSelector(state => state.products)
+
+  useEffect(() => {
+    const fetchProducts = () => {
+      dispatch({
+        type: "LOAD_PRODUCTS",
+        payload: items,
+      })
+    }
+    fetchProducts()
+  }, [dispatch])
+
+  const handleOnAddToCart = item => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: item,
+    })
+  }
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <ItemList items={products} onAddToCart={handleOnAddToCart} />
+    </Layout>
+  )
+}
 
 export default IndexPage
